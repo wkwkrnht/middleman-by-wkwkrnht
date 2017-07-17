@@ -69,7 +69,7 @@ html lang='ja'
                 == site_title
         main.card-list
             - page_articles.each_with_index do |article, i|
-                - title = article.data.title
+                - title = article.metadata.title
                 = link_to URI.encode(article.url), :class=>'mini-card', :title=>title, :tabindex=>'0' do
                     = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
                     div.card-meta
