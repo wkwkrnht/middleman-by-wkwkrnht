@@ -1,0 +1,13 @@
+host: 'https://middleman-by-wkwkrnht.netlify.com'
+title: RT狂の思考ログ
+description: wkwkrnhtが唯一持つ長文発信所。「気が向いたときに気のままに。」をモットーに記事を公開中。
+icon: ''
+theme_color: '#03a9f4'
+startyear: '2015'
+google:
+    - searchID: ''
+      analyticsID: ''
+bingOuthID: ''
+pinterestOuthID: ''
+twitterID: '@wkwkrnht'
+facebookID: ''

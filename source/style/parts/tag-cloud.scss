@@ -1,0 +1,29 @@
+.tag-cloud{
+    & > *{
+        display:inline-block;
+    }
+    & a{
+        background-color:#fff;
+        border:1px solid #03a9f4;
+        border-radius:1em;
+        color:#333;
+        display:inline-block;
+        font-size:1.8rem;
+        height:1.6em;
+        max-width:10em;
+        margin:0 .3em .3em 0;
+        overflow:hidden;
+        padding:0 1em;
+        text-decoration:none;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        &:hover{
+            background-color:#03a9f4;
+            border-color:#fff;
+            color:#fff;
+        }
+    }
+}
+ul.tag-cloud{
+    list-style:none;
+}

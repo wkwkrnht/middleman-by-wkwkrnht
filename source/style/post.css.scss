@@ -1,0 +1,289 @@
+@import './parts/tag-cloud.scss';
+@import './parts/sns-share.scss';
+@import './parts/related-articles.scss';
+article{
+    box-shadow:0 0 3vmin rgba(0,0,0,.2);
+    margin:6vh auto;
+    max-width:1600px;
+    width:90vw;
+}
+.article-header{
+    box-sizing:border-box;
+    height:40vmax;
+    position:relative;
+    overflow:hidden;
+    width:100%;
+}
+.article-eyecatch,.article-meta,.article-date,.article-author{
+    display:inline-block;
+}
+.article-eyecatch,.article-meta{
+    position:absolute;
+    width:100%;
+}
+.article-eyecatch{
+    top:0;
+}
+.article-meta{
+    background-color:rgba(0,0,0,.5);
+    bottom:0;
+    box-sizing:border-box;
+    color:#fff;
+    height:100%;
+    padding:1vh 2vh;
+}
+.article-title,.article-meta > div{
+    width:100%;
+}
+.article-date,.article-author{
+    width:49%;
+}
+.article-footer{
+    margin:6vh 0 0;
+    & > *{
+        margin:4vh auto;
+    }
+    & .copyright{
+        background-color:#03a9f4;
+        color:#fff;
+        display:block;
+        font-size:1.8rem;
+        margin:0;
+        padding:2vh 0;
+        text-align:center;
+        width:100%;
+    }
+}
+
+.article-main{
+    font-size:1.6rem;
+    & #markdown-toc{
+        background-color:#fff;
+        box-shadow:0 0 3vmin rgba(0,0,0,.2);
+        font-size:1.7rem;
+        margin:4vh auto;
+        padding:2vh;
+        width:86%;
+        &::before{
+            background-color:#03a9f4;
+            color:#fff;
+            content:"目次";
+            display:inline-block;
+            font-size:2rem;
+            margin:0 0 2vh;
+            padding:.5em 0;
+            text-align:center;
+            width:100%;
+        }
+    }
+    & > div{
+        margin:4vh auto;
+        max-width:80%;
+    }
+    & p{
+        margin:2vh auto;
+        max-width:calc(1.6rem * 46);
+        padding:1vh .5vh;
+    }
+    & a{
+        &[href^="http"]:empty::before{
+            content:attr(href);
+        }
+        &[href^="http"][title]:empty::before{
+            content:attr(title);
+        }
+        &:hover,&:focus{
+            border-bottom:1px solid #03a9f4;
+        }
+    }
+}
+
+.article-main h1,.article-main h2,.article-main h3,.article-main h4,.article-main h5,.article-main h6{
+    line-height:6vh;
+    margin:2vh auto;
+    max-width:80%;
+    min-height:6vh;
+    text-align:center;
+}
+.article-main h3,.article-main h4,.article-main h5,.article-main h6{
+    font-size:2rem;
+}
+.article-main h1{
+    background-color:#f4f4f4;
+    border-bottom:1px dashed #ccc;
+    border-top:1px dashed #ccc;
+    box-shadow:0 7px 10px -5px rgba(0,0,0,.1) inset;
+    padding:.75em;
+}
+.article-main h2{
+    background-color:#03a9f4;
+    box-shadow:0 0 3vmin rgba(0,0,0,.2);
+    color:#fff;
+    & > a:visited{
+        color:#fff;
+    }
+}
+.article-main h3{
+    border:1vmin solid #03a9f4;
+    box-shadow:0 0 3vmin rgba(0,0,0,.1);
+    color:#03a9f4;
+    & > a:visited{
+        color:#03a9f4;
+    }
+}
+.article-main h4{
+    border-bottom:1px solid #03a9f4;
+    border-left:.5em solid #03a9f4;
+}
+.article-main h5{
+    border-left:.5em solid #03a9f4;
+}
+.article-main h6{
+    border-bottom:.75vmin dashed #03a9f4;
+}
+
+.article-main pre,.article-main address,.article-main code{
+    margin:2vh auto;
+    max-width:94%;
+}
+.article-main pre{
+    font-weight:bold;
+}
+.article-main code{
+    overflow:auto;
+    white-space:pre;
+}
+.article-main address,.article-main code,.article-main q{
+    background-color:#eee;
+}
+.article-main blockquote,.article-main q{
+    quotes:none;
+}
+.article-main blockquote{
+    border:1px solid #bbb;
+    border-radius:3vmin;
+    padding:1em 2em;
+    &[title]::after{
+        content:attr(title);
+    }
+    &[cite]::after{
+        content:attr(cite);
+    }
+    &[title][cite]::after{
+        content:attr(title)"\a" attr(cite);
+    }
+    &[title]::after,&[cite]::after,&[title][cite]::after{
+        border-top:1px solid #bbb;
+        display:block;
+        padding-top:1em;
+        text-align:right;
+        white-space:pre-wrap;
+        word-wrap:break-word;
+    }
+}
+.article-main * iframe[src*="youtu.be"],
+.article-main * iframe[src*="youtube.com"],
+.article-main * iframe[src*="www.youtube.com"]{
+    height:calc(80vw / 100 * 56.25);
+    margin:4vh 0;
+    max-height:calc(720px / 100 * 56.25);
+    max-width:720px;
+    width:80vw;
+}
+
+.article-main li{
+    border-bottom:1px dashed #ccc;
+    line-height:2;
+}
+.article-main ul,.article-main,ol{
+    list-style:none;
+    margin:2vh auto;
+}
+.article-main ul{
+    max-width:80%;
+    & li::before{
+        color:#03a9f4;
+        content:"●";
+        display:inline;
+        font-size:.8em;
+        padding-right:1em;
+    }
+}
+.article-main ol{
+    counter-reset:counter-name;
+    & li{
+        margin:0;
+        padding-left:2em;
+        padding-top:.1em;
+        position:relative;
+        &::before{
+            background-color:#03a9f4;
+            border-radius:50%;
+            color:#fff;
+            content:counter(counter-name);
+            counter-increment:counter-name;
+            display:inline-block;
+            height:1.5em;
+            left:0;
+            position:absolute;
+            text-align:center;
+            vertical-align:75%;
+            width:1.5em;
+        }
+    }
+}
+
+.article-main table{
+    border-collapse:collapse;
+    box-sizing:border-box;
+    margin:2vh auto;
+    table-layout:fixed;
+    width:calc(100% - 16vmin);
+    & caption{
+        background-color:#ffc045;
+        padding:1.2em;
+        text-align:center;
+    }
+    & tr{
+        & th{
+            background-color:#03a9f4;
+            color:#fff;
+        }
+        & th,& td{
+            border:1px solid #cfcfcf;
+            overflow:auto;
+            padding:1em;
+            text-align:center;
+        }
+        &:last-child{
+            border-left:none;
+        }
+    }
+    &:last-child{
+        border-bottom:none;
+    }
+}
+
+.article-main img{
+    display:block;
+    height:auto;
+    margin:4vh auto;
+    text-align:center;
+    width:100%;
+}
+.article-main a[href*=".png"],
+.article-main a[href*=".jpg"],
+.article-main a[href*=".jpeg"],
+.article-main a[href*=".gif"]{
+    display:block;
+    margin:2vh auto;
+}
+
+/*
+Support Edge & IE
+*/
+@supports (-ms-ime-align:auto) {
+    .article-header{
+        height:640px;
+    }
+}

@@ -1,0 +1,94 @@
+.card-list{
+    align-content:space-around;
+    align-items:baseline;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-evenly;
+}
+
+.mini-card{
+    box-shadow:0 0 3vmin rgba(0,0,0,.2);
+    display:block;
+    height:29vmax;
+    margin:4vh auto;
+    overflow:hidden;
+    position:relative;
+    width:29vmax;
+    &,&:visited{
+        color:#fff;
+    }
+}
+.card-img,.card-meta{
+    bottom:0;
+    position:absolute;
+    width:29vmax;
+}
+.card-img{
+    height:29vmax;
+    transition-duration:.3s;
+    &:hover{
+        transform:scale(1.1);
+    	transition-duration:.3s;
+    }
+}
+.card-meta{
+    background-color:rgba(0,0,0,.5);
+    height:calc(29vmax / 10 * 4);
+    & > h2{
+        overflow:hidden;
+        text-align:center;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    & > time{
+        box-sizing:border-box;
+        display:inline-block;
+        font-size:1.8rem;
+        padding:0 1em;
+        width:29vmax;
+    }
+}
+
+.big-card{
+    box-shadow:0 0 3vmin rgba(0,0,0,.2);
+    box-sizing:border-box;
+    padding:0 0 1em;
+    margin:6vh auto;
+    max-width:96%;
+    & > h2{
+        background-color:#03a9f4;
+        color:#fff;
+        display:inline-block;
+        font-size:2rem;
+        margin:0;
+        padding:.5em 0;
+        text-align:center;
+        width:100%;
+    }
+    & ul{
+        list-style-type:none;
+    }
+}
+
+/*
+Support Edge & IE
+*/
+@supports (-ms-ime-align:auto) {
+    .mini-card{
+        height:16em;
+        margin:2em;
+        width:16em;
+    }
+    .card-img,.card-meta{
+        width:inherit;
+    }
+    .card-img{
+        height:inherit;
+    }
+    .card-meta{
+        height:calc(12em * 0.4);
+    }
+    .big-card{
+        margin:4em auto;
+    }
+}

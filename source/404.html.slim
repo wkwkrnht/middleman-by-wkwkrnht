@@ -1,0 +1,113 @@
+- base_url = data.site.host
+- site_title = data.site.title
+- title = '404 page - ' + site_title
+- description = data.site.description
+- meta_img = data.site.icon || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
+- theme_color = data.site.theme_color
+- first_post_year = data.site.startyear
+doctype html
+html
+    head
+        meta charset='utf-8'
+        meta content='IE=edge' http-equiv='X-UA-Compatible'
+        meta name='viewport' content='width=device-width initial-scale=1'
+        meta name='renderer' content='webkit'
+        meta name='HandheldFriendly' content='true'
+        meta name='description' content='#{description}'
+        meta name='theme-color' content='#{theme_color}'
+        meta name='msapplication-TileColor' content='#{theme_color}'
+        meta property='fb:app_id' content=data.site.facebookID
+        meta property='og:type' content='article'
+        meta property='og:title' content='#{title}'
+        meta property='og:url' content='#{base_url}'
+        meta property='og:description' content='#{description}'
+        meta property='og:site_name' content='#{site_title}'
+        meta property='og:image' content='#{meta_img}'
+        meta name='twitter:card' content="summary"
+        meta name='twitter:domain' content='#{base_url}'
+        meta name='twitter:title' content='404 page - #{site_title}'
+        meta name='twitter:description' content='#{description}'
+        meta name='twitter:image' content='#{meta_img}'
+        meta name='twitter:site' content=data.site.twitterID
+        link rel='fluid-icon' href='#{meta_img}' title='#{site_title}'
+        link rel='image_src' href='#{meta_img}' url='#{meta_img}' height="256" width="256"
+        title
+            == title
+        script type='application/ld+json'
+            |{
+            |    "@context": "http://schema.org",
+            |    "@type": "WebSite",
+            |    "name":"404 page - #{site_title}",
+            |    "description": "#{description}",
+            |    "url": "#{base_url}",
+            |    "inLanguage": "ja-jp",
+            |    "publisher":{
+        	|		"@type":"Organization",
+        	|		"name":"#{site_title}",
+        	|		"logo":{
+        	|			"@type": "ImageObject",
+        	|			"url": "#{meta_img}",
+        	|			"width":60,
+        	|			"height":60
+        	|		}
+        	|	},
+            |    "copyrightYear": "#{first_post_year}",
+            |    "copyrightHolder": {
+            |        "@type": "Organization",
+            |        "name": "#{site_title}"
+            |    }
+            |}
+        = javascript_include_tag 'loadCSS'
+        javascript:
+            loadCSS('/style/base.css');
+            loadCSS('/style/404.css');
+    body
+        header.site-header
+            h1.site-title
+                = title
+            a.copyright href='/'
+                == first_post_year
+                | &copy;
+                == site_title
+        main
+            section class='big-card keyword-search'
+                h2
+                    | キーワードで検索
+                form action='https://duckduckgo.com/' role='search'
+                    input name='sites' type='hidden' value='#{base_url}'
+                    input name='q' type='search' required='' label='キーワード'
+                    input type='submit' value='Search' label='検索'
+            /section class='big-card tag-search'
+            /    h2
+            /        | タグで検索
+            /    ul.tag-cloud
+            /        - blog.tags.each_key do |tag|
+            /            li
+            /                == link_to tag, tag_path(tag), :title=>tag, :tabindex=>'0'
+            /section class='big-card date-search'
+            /    h2
+            /        | 日時で検索
+            /    ul
+            /        - blog.articles.group_by {|a| a.date.year }.each do |year, articles_year|
+            /            li
+            /                h3
+            /                    = link_to blog_year_path(year) do
+            /                        ==year
+            /                        | 年
+            /                ul
+            /                    li
+            /                        - articles_year.group_by {|a| a.date.month }.each do |month, articles_month|
+            /                            h4
+            /                                = link_to blog_year_path(month) do
+            /                                    == month
+            /                                    | 月
+            /                            ul.card-list
+            /                                - articles_month.each do |article|
+            /                                    li
+            /                                        = link_to URI.encode(article.url), :class=>'mini-card', :title=>article.title, :tabindex=>'0' do
+            /                                            = image_tag article.metadata[:locals]['eyecatch'] || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
+            /                                            .card-meta
+            /                                                h5
+            /                                                    == article.title
+            /                                                time
+            /                                                    = article.date.strftime('%Y-%m-%d')

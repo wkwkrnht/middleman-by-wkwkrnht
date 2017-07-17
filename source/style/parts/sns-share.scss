@@ -1,0 +1,73 @@
+@import 'snsicon';
+.share-button{
+    background-color:#eee;
+    box-shadow:0 7px 10px -5px rgba(0,0,0,.1) inset;
+    margin:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    width:inherit;
+    & li{
+        box-sizing:border-box;
+        display:inline-block;
+        margin:1vh 2vh;
+        & a{
+            background-color:#737373;
+            box-sizing:border-box;
+            color:#fff;
+            display:inline-block;
+            font-size:2rem;
+            height:3em;
+            text-align:center;
+            vertical-align:50%;
+            width:4em;
+            &[href*="hootsuite"],&[href*="reddit"]{
+                font-weight:700;
+            }
+            &[href*="instapaper"]{
+                background-color:#fff;
+                border:1vmin solid #333;
+                color:#333;
+            }
+            &[href*="buffer"],&[href*="hootsuite"],&[href*="digg"]{
+                background-color:#333;
+            }
+            &[href*="google"]{
+                background-color:#dc4e41;
+            }
+            &[href*="hatena"]{
+                background-color:#00a4de;
+            }
+            &[href*="line"]{
+                background-color:#00c300;
+            }
+            &[href*="linkedin"]{
+                background-color:#0077b5;
+            }
+            &[href*="pinterest"]{
+                background-color:#bd081c;
+            }
+            &[href*="pocket"]{
+                background-color:#ef3f56;
+            }
+            &[href*="reddit"]{
+                background-color:#ff4500;
+            }
+            &[href*="stumbleupon"]{
+                background-color:#eb4924;
+            }
+            &[href*="tumblr"]{
+                background-color:#36465d;
+            }
+            &[href*="twitter"]{
+                background-color:#1da1f2;
+            }
+            &[href*="vk"]{
+                background-color:#6383a8;
+            }
+        }
+    }
+    .article-footer &{
+        margin:0;
+    }
+}

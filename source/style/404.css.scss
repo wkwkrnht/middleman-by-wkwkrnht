@@ -1,0 +1,44 @@
+@import './parts/site-header.scss';
+@import './parts/card.scss';
+@import './parts/tag-cloud.scss';
+
+.keyword-search{
+    & form{
+        margin:2vh auto;
+        & input{
+            display:inline-block;
+            &[type="search"]{
+                margin-right:5%;
+                width:70%;
+            }
+            &[type="submit"]{
+                background-color:#fff;
+                border:1px solid #03a9f4;
+                color:#03a9f4;
+                width:15%;
+                &:hover{
+                    background-color:#03a9f4;
+                    color:#fff;
+                }
+            }
+        }
+    }
+}
+
+.date-search{
+    & h3{
+        font-size:2rem;
+    }
+    & h4{
+        font-size:1.8rem;
+    }
+    & h5{
+        font-size:1.6rem;
+    }
+    & .card-list{
+        height:30vmax;
+        overflow-x:auto;
+        overflow-y:hidden;
+        width:100%;
+    }
+}
