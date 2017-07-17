@@ -70,11 +70,10 @@ html lang='ja'
         main.card-list
             - sitemap.resources.each do |article|
                 - if article.path.end_with?('.html')
-                    - title = article.metadata.title
-                    = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>title, :tabindex=>'0' do
+                    = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>article.data.title, :tabindex=>'0' do
                         = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
                         div.card-meta
                             h2
-                                = title 
+                                = article.data.title 
                             /time
                             /    = article.date.strftime('%Y-%m-%d')
