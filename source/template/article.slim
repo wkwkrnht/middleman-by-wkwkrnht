@@ -1,13 +1,13 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- title = current_resource.data.title || site_title
-- description = current_resource.data.description || data.site.description
-- meta_img = current_resource.data.eyecatch || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
-- meta_url = URI.join(base_url, URI.encode(current_resource.url))
+- title = current_page.data.title || site_title
+- description = current_page.data.description || data.site.description
+- meta_img = current_page.data.eyecatch || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
+- meta_url = URI.join(base_url, URI.encode(current_page.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
-- date = current_resource.data.date
-- author = current_resource.data.author
+- date = current_page.data.date
+- author = current_page.data.author
 doctype html
 html lang='ja'
     head
@@ -79,10 +79,10 @@ html lang='ja'
     body class='#{page_classes}'
         article
             header.article-header
-                = image_tag current_resource.data.eyecatch || '/img/no-img/full.png', :alt=>'eyecatch', :class=>'article-eyecatch'
+                = image_tag current_page.data.eyecatch || '/img/no-img/full.png', :alt=>'eyecatch', :class=>'article-eyecatch'
                 .article-meta
                     h1.article-title
-                        == current_page.title
+                        == title
                     div
                         time.article-date
                             == date
