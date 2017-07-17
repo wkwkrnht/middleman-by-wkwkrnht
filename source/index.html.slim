@@ -1,7 +1,7 @@
 - base_url = data.site.host
 - site_title = data.site.title
 - description = data.site.description
-- meta_img = data.site.icon || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
+- meta_img = data.site.icon || URI.join(base_url,URI.encode('/img/no-img/256x256.png'))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
 doctype html
@@ -68,12 +68,13 @@ html lang='ja'
                 | &copy;
                 == site_title
         main.card-list
-            - page_articles.each_with_index do |article, i|
-                - title = article.metadata.title
-                = link_to URI.encode(article.url), :class=>'mini-card', :title=>title, :tabindex=>'0' do
-                    = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
-                    div.card-meta
-                        h2
-                            = title 
-                        /time
-                        /    = article.date.strftime('%Y-%m-%d')
+            - sitemap.resources.each do |article|
+                - if article.path.end_with?('.html')
+                    - title = article.metadata.title
+                    = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>title, :tabindex=>'0' do
+                        = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
+                        div.card-meta
+                            h2
+                                = title 
+                            /time
+                            /    = article.date.strftime('%Y-%m-%d')
