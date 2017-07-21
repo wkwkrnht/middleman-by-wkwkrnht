@@ -42,19 +42,19 @@ end
 
 def group_lookup(resource,sum)
     results = Array(get_tags(resource)).map(&:to_s).map(&:to_sym)
-    results.each do |tag|
-        sum[tag] ||= []
-        sum[tag] << resource
+    results.each do |k|
+        sum[k] ||= []
+        sum[k] << resource
     end
 end
 
-tags = resources.select{ |resource| resource.data.tags }.each_with_object({},&method(:group_lookup))
+tags = resources.select{ |resource| resource.data.tags }.each_with_object({}, &method(:group_lookup))
 
 collection :all_tags, tags
 
 configure :build do
-    tags.each do |tag,articles|
-        proxy '/tag/#{tag}.html', '/tag/template.html', locals: {tag: tag, articles: articles}, :ignore => true
+    tags.each do |k, resource|
+        proxy '/tag/#{tag}.html', '/tag/template.html', locals: {tag: k, articles: resource}, :ignore => true
     end
     activate :minify_html
     activate :gzip

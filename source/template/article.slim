@@ -90,7 +90,7 @@ html lang='ja'
                             == author
                     - if current_page.data.tags.present?
                         ul.tag-cloud
-                            - current_page.data.tags.each do |tag|
+                            - current_page.data.tags.each_with_index do |tag, i|
                                 li
                             /        == link_to tag, URI.join(URI.join(base_url, /tags.html), '#' + tag)
             .article-main role='main'
