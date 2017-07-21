@@ -42,9 +42,9 @@ end
 
 def group_lookup(resource,sum)
     results = Array(get_tags(resource)).map(&:to_s).map(&:to_sym)
-    results.each do |k|
-        sum[k] ||= []
-        sum[k] << resource
+    results.each do |tag|
+        sum[tag] ||= []
+        sum[tag] << resource
     end
 end
 
