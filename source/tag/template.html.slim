@@ -1,0 +1,81 @@
+- base_url = data.site.host
+- site_title = data.site.title
+- title = tag + 'のアーカイブ - ' + site_title
+- description = data.site.description
+- meta_img = data.site.icon || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
+- theme_color = data.site.theme_color
+- first_post_year = data.site.startyear
+doctype html
+html
+    head
+        meta charset='utf-8'
+        meta content='IE=edge' http-equiv='X-UA-Compatible'
+        meta name='viewport' content='width=device-width initial-scale=1'
+        meta name='renderer' content='webkit'
+        meta name='HandheldFriendly' content='true'
+        meta name='description' content='#{description}'
+        meta name='theme-color' content='#{theme_color}'
+        meta name='msapplication-TileColor' content='#{theme_color}'
+        meta property='fb:app_id' content=data.site.facebookID
+        meta property='og:type' content='article'
+        meta property='og:title' content='#{title}'
+        meta property='og:url' content='#{base_url}'
+        meta property='og:description' content='#{description}'
+        meta property='og:site_name' content='#{site_title}'
+        meta property='og:image' content='#{meta_img}'
+        meta name='twitter:card' content="summary"
+        meta name='twitter:domain' content='#{base_url}'
+        meta name='twitter:title' content='404 page - #{site_title}'
+        meta name='twitter:description' content='#{description}'
+        meta name='twitter:image' content='#{meta_img}'
+        meta name='twitter:site' content=data.site.twitterID
+        link rel='fluid-icon' href='#{meta_img}' title='#{site_title}'
+        link rel='image_src' href='#{meta_img}' url='#{meta_img}' height="256" width="256"
+        title
+            == title
+        script type='application/ld+json'
+            |{
+            |    "@context": "http://schema.org",
+            |    "@type": "WebSite",
+            |    "name":"404 page - #{site_title}",
+            |    "description": "#{description}",
+            |    "url": "#{base_url}",
+            |    "inLanguage": "ja-jp",
+            |    "publisher":{
+        	|		"@type":"Organization",
+        	|		"name":"#{site_title}",
+        	|		"logo":{
+        	|			"@type": "ImageObject",
+        	|			"url": "#{meta_img}",
+        	|			"width":60,
+        	|			"height":60
+        	|		}
+        	|	},
+            |    "copyrightYear": "#{first_post_year}",
+            |    "copyrightHolder": {
+            |        "@type": "Organization",
+            |        "name": "#{site_title}"
+            |    }
+            |}
+        = javascript_include_tag 'loadCSS'
+        javascript:
+            loadCSS('/style/base.css');
+            loadCSS('/style/tag.css');
+    body
+        header.site-header
+            h1.site-title
+                = title
+            a.copyright href='/'
+                == first_post_year
+                | &copy;
+                == site_title
+        main
+            - articles.each do |article|
+                -title = article.data.title
+                = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>title, :tabindex=>'0' do
+                    = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
+                    div.card-meta
+                        h2
+                            = title 
+                        time
+                            = article.data.date
