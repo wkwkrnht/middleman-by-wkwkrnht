@@ -56,7 +56,7 @@ ignore '/tag/template.html.slim'
 
 configure :build do
     tags.each do |k, resource|
-        proxy '/tag/#{k}.html', '/tag/template.html', locals: {tag: k, articles: articles}, :ignore => true
+        proxy '/tag/#{k}.html', '/tag/template.html', locals: {tag: k, articles: resource}, :ignore => true
     end
     activate :minify_html
     activate :gzip
