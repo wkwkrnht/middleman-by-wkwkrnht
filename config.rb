@@ -55,7 +55,7 @@ collection :all_tags, tags
 ignore '/tag/template.html.slim'
 
 configure :build do
-    collection(:tags).each do |k, resource|
+    collection(:tags).each do |(k, resource)|
         proxy '/tag/#{k}.html', '/tag/template.html', :ignore => true, locals: { tagname: k, articles: resource }
     end
     activate :minify_html
