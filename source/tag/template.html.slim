@@ -1,6 +1,6 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- title = tag + 'のアーカイブ - ' + site_title
+- title = locals[:tag] + 'のアーカイブ - ' + site_title
 - description = data.site.description
 - meta_img = data.site.icon || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
 - theme_color = data.site.theme_color
@@ -70,7 +70,7 @@ html
                 | &copy;
                 == site_title
         main
-            - articles.each do |article|
+            - locals[:articles].each do |article|
                 -title = article.data.title
                 = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>title, :tabindex=>'0' do
                     = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
