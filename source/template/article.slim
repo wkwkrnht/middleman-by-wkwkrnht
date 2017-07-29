@@ -92,7 +92,7 @@ html lang='ja'
                         - tags = current_page.data.tags
                         ul.tag-cloud
                             - if tags.is_a? String
-                                - tags.each do |tag|
+                                - tags.split(',').map(&:strip).each do |tag|
                                     li
                                         == link_to tag, URI.join(URI.join(base_url, '/tag/'), tag + '.html')
                             - else
