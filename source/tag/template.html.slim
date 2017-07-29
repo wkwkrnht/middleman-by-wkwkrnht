@@ -1,6 +1,6 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- title = locals[:tagname] + 'のアーカイブ - ' + site_title
+- title = locals[:tagname].to_s + 'のアーカイブ - ' + site_title
 - description = data.site.description
 - meta_img = data.site.icon || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
 - theme_color = data.site.theme_color
