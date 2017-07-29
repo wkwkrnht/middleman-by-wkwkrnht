@@ -69,7 +69,7 @@ html
                 == first_post_year
                 | &copy;
                 == site_title
-        main
+        main.card-list
             - locals[:articles].each do |article|
                 -title = article.data.title
                 = link_to URI.join(URI.encode(base_url),URI.encode(article.url)), :class=>'mini-card', :title=>title, :tabindex=>'0' do

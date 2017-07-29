@@ -89,10 +89,15 @@ html lang='ja'
                         span.article-author
                             == author
                     - if current_page.data.tags.present?
+                        - tags = current_page.data.tags
                         ul.tag-cloud
-                            /- current_page.data.tags.each_with_index do |tag, i|
-                            /    li
-                            /        == link_to tag, URI.join(URI.join(base_url, /tags.html), '#' + tag)
+                            - if tags.is_a
+                                - tags.each do |tag|
+                                    li
+                                        == link_to tag, URI.join(URI.join(base_url, '/tag/'), tag + '.html')
+                            - else
+                                li
+                                    == link_to tags, URI.join(URI.join(base_url, '/tag/'), tags + '.html')
             .article-main role='main'
                 == yield
             footer.article-footer
