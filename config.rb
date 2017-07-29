@@ -52,12 +52,11 @@ tags = resources.select{ |resource| resource.data.tags }.each_with_object({}, &m
 
 collection :all_tags, tags
 
-ignore '/tag/template.html.slim'
+tags.each do |k, resource|
+    proxy '/tag/#{k}.html', '/tag/template.html', :ignore => true, locals: { tagname: k, articles: resource }
+end
 
 configure :build do
-    collection(:tags).each do |(k, resource)|
-        proxy '/tag/#{k}.html', '/tag/template.html', :ignore => true, locals: { tagname: k, articles: resource }
-    end
     activate :minify_html
     activate :gzip
     activate :minify_css
