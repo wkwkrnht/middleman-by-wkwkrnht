@@ -91,7 +91,7 @@ html lang='ja'
                     - if current_page.data.tags.present?
                         - tags = current_page.data.tags
                         ul.tag-cloud
-                            - if tags.is_a
+                            - if tags.is_a? String
                                 - tags.each do |tag|
                                     li
                                         == link_to tag, URI.join(URI.join(base_url, '/tag/'), tag + '.html')
