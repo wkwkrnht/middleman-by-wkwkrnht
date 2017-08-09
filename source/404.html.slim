@@ -80,9 +80,9 @@ html
             /    h2
             /        | タグで検索
             /    ul.tag-cloud
-            /        - blog.tags.each_key do |tag|
+            /        - collection(:tags).each do |tag, articles|
             /            li
-            /                == link_to tag, tag_path(tag), :title=>tag, :tabindex=>'0'
+            /                == link_to tag, URL.join(base_url, '/tag/' + URL.encode(tag) + '.html'), :title=>tag, :tabindex=>'0'
             /section class='big-card date-search'
             /    h2
             /        | 日時で検索
