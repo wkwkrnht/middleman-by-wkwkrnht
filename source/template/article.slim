@@ -36,42 +36,42 @@ html lang='ja'
         link rel='image_src' href='#{meta_img}' url='#{meta_img}' height="256" width="256"
         title == title
         script type="application/ld+json"
-            |{
-            |    "@context": "http://schema.org",
-            |    "@type": "NewsArticle",
-            |    "mainEntityOfPage": {
-            |        "@type": "WebPage",
-            |        "@id": "https://google.com/article"
-            |    },
-            |    "headline": "#{title}",
-            |    "description": "#{description}",
-            |    "image": {
-            |        "@type": "ImageObject",
-            |        "url": "#{meta_img}",
-            |        "height": 256,
-            |        "width": 696
-            |    },
-            |    "datePublished": "#{date}",
-            |    "author": {
-            |        "@type": "Person",
-            |        "name": "#{author}"
-            |    },
-            |    "publisher": {
-            |        "@type": "Organization",
-            |        "name": "#{site_title}",
-            |        "logo": {
-            |            "@type": "ImageObject",
-            |            "url": " == data.site.logo ",
-            |            "width": 600,
-            |            "height": 60
-            |        }
-            |    },
-            |    "copyrightYear": "#{first_post_year}",
-            |    "copyrightHolder": {
-            |        "@type": "Organization",
-            |        "name": "#{site_title}"
-            |    }
-            |}
+            {
+                "@context": "http://schema.org",
+                "@type": "NewsArticle",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://google.com/article"
+                },
+                "headline": "#{title}",
+                "description": "#{description}",
+                "image": {
+                    "@type": "ImageObject",
+                    "url": "#{meta_img}",
+                    "height": 256,
+                    "width": 696
+                },
+                "datePublished": "#{date}",
+                "author": {
+                    "@type": "Person",
+                    "name": "#{author}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "#{site_title}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": " == data.site.logo ",
+                        "width": 600,
+                        "height": 60
+                    }
+                },
+                "copyrightYear": "#{first_post_year}",
+                "copyrightHolder": {
+                    "@type": "Organization",
+                    "name": "#{site_title}"
+                }
+            }
         = javascript_include_tag 'loadCSS'
         javascript:
             loadCSS('/style/post.css');
