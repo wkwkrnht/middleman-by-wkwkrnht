@@ -53,7 +53,7 @@ tags = resources.select{ |resource| resource.data.tags }.each_with_object({}, &m
 collection :all_tags, tags
 
 tags.each do |k, resource|
-    proxy "/tag/#{k}.html", '/tag/template.html', :ignore => true, locals: { tagname: k, articles: resource }
+    proxy "/tag/#{k}.html", '/template/tag.html', :ignore => true, locals: { tagname: k, articles: resource }
 end
 
 configure :build do
