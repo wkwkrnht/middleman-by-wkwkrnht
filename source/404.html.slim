@@ -34,29 +34,29 @@ html
         title
             == title
         script type='application/ld+json'
-            {
-                "@context": "http://schema.org",
-                "@type": "WebSite",
-                "name":"404 page - #{site_title}",
-                "description": "#{description}",
-                "url": "#{base_url}",
-                "inLanguage": "ja-jp",
-                "publisher":{
-        			"@type":"Organization",
-        			"name":"#{site_title}",
-        			"logo":{
-        				"@type": "ImageObject",
-        				"url": "#{meta_img}",
-        				"width":60,
-        				"height":60
-        			}
-        		},
-                "copyrightYear": "#{first_post_year}",
-                "copyrightHolder": {
-                    "@type": "Organization",
-                    "name": "#{site_title}"
-                }
-            }
+            |{
+            |    "@context": "http://schema.org",
+            |    "@type": "WebSite",
+            |    "name":"404 page - #{site_title}",
+            |    "description": "#{description}",
+            |    "url": "#{base_url}",
+            |    "inLanguage": "ja-jp",
+            |    "publisher":{
+        	|		"@type":"Organization",
+        	|		"name":"#{site_title}",
+        	|		"logo":{
+        	|			"@type": "ImageObject",
+        	|			"url": "#{meta_img}",
+        	|			"width":60,
+        	|			"height":60
+        	|		}
+        	|	},
+            |    "copyrightYear": "#{first_post_year}",
+            |    "copyrightHolder": {
+            |        "@type": "Organization",
+            |        "name": "#{site_title}"
+            |    }
+            |}
         = javascript_include_tag 'loadCSS'
         javascript:
             loadCSS('/style/404.css');
@@ -76,13 +76,13 @@ html
                     input name='sites' type='hidden' value='#{base_url}'
                     input name='q' type='search' required='' label='キーワード'
                     input type='submit' value='Search' label='検索'
-            section class='big-card tag-search'
-                h2
-                    | タグで検索
-                ul.tag-cloud
-                    - collection(:tags).each do |name, articles|
-                        li
-                            == link_to name, URL.join(base_url, URL.join('/tag/', URL.encode(name) + '.html')), :title=>name, :tabindex=>'0'
+            /section class='big-card tag-search'
+            /    h2
+            /        | タグで検索
+            /    ul.tag-cloud
+            /        - blog.tags.each_key do |tag|
+            /            li
+            /                == link_to tag, tag_path(tag), :title=>tag, :tabindex=>'0'
             /section class='big-card date-search'
             /    h2
             /        | 日時で検索

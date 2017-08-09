@@ -32,29 +32,29 @@ html lang='ja'
         link rel='image_src' href='#{meta_img}' url='#{meta_img}' height="256" width="256"
         title == site_title
         script type='application/ld+json'
-            {
-                "@context": "http://schema.org",
-                "@type": "WebSite",
-                "name":"#{site_title}",
-                "description": "#{description}",
-                "url": "#{base_url}",
-                "inLanguage": "ja-jp",
-                "publisher":{
-    				"@type":"Organization",
-    				"name":"#{site_title}",
-    				"logo":{
-    					"@type": "ImageObject",
-    					"url": "#{meta_img}",
-    					"width":60,
-    					"height":60
-    				}
-    			},
-                "copyrightYear": "#{first_post_year}",
-                "copyrightHolder": {
-                    "@type": "Organization",
-                    "name": "#{site_title}"
-                }
-            }
+            |{
+            |    "@context": "http://schema.org",
+            |    "@type": "WebSite",
+            |    "name":"#{site_title}",
+            |    "description": "#{description}",
+            |    "url": "#{base_url}",
+            |    "inLanguage": "ja-jp",
+            |    "publisher":{
+    		|		"@type":"Organization",
+    		|		"name":"#{site_title}",
+    		|		"logo":{
+    		|			"@type": "ImageObject",
+    		|			"url": "#{meta_img}",
+    		|			"width":60,
+    		|			"height":60
+    		|		}
+    		|	},
+            |    "copyrightYear": "#{first_post_year}",
+            |    "copyrightHolder": {
+            |        "@type": "Organization",
+            |        "name": "#{site_title}"
+            |    }
+            |}
         = javascript_include_tag 'loadCSS'
         javascript:
             loadCSS('/style/list.css');
