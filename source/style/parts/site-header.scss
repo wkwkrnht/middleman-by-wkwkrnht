@@ -1,17 +1,19 @@
-.site-header{
-    background-color:#03a9f4;
-    box-shadow:0 0 3vmin rgba(0,0,0,.1);
-    height:10%;
-    padding:3vh 0 5vh;
-    text-align:center;
-    width:100%;
-    &,& a,& a:visited{
-        color:#fff;
+.site{
+    &-header{
+        background-color:#03a9f4;
+        box-shadow:0 0 3vmin rgba(0,0,0,.1);
+        height:10%;
+        padding:3vh 0 5vh;
+        text-align:center;
+        width:100%;
+        &,& a,& a:visited{
+            color:#fff;
+        }
     }
-}
-.site-title{
-    font-size:2.5rem;
-}
-.site-description,.site-header .copyright{
-    font-size:1.8rem;
+    &-title{
+        font-size:2.5rem;
+    }
+    &-description,&-header .copyright{
+        font-size:1.8rem;
+    }
 }
