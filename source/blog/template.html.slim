@@ -1,9 +1,9 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- title = locals[:articles].title || site_title
+- title = locals[:articles].data.title || site_title
 - description = locals[:articles].data.description || data.site.description
 - meta_img = locals[:articles].data.eyecatch || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
-- meta_url = URI.join(base_url, URI.encode(locals[:articles].url))
+- meta_url = URI.join(base_url, URI.encode(locals[:articles].data.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
 /- date = locals[:articles].data.date
