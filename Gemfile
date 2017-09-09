@@ -7,6 +7,7 @@ gem 'ansi'
 gem 'slim'
 gem 'nokogiri'
 gem 'builder'
+gem 'prismic.io', require: 'prismic'
 
 gem 'middleman'
 gem 'middleman-minify-html'

@@ -32,6 +32,17 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 
 page 'articles/*', :layout => 'article'
 
+def get_data_from_prism
+    api = Prismic.api('https://middleman-by-wkwkrnht.io/api')
+    doc = api.query(Prismic::Predicates.at("document.type", "blog"))
+    doc.results
+end
+get_data_frpom_prism().each do |page|
+    url = page.url || URL.encode(page.title)
+    proxy "/blog/#{url}.html", '/blog/template.html', :ignore => true, locals: { articles: page }
+end
+
+
 def get_author(resource)
     if resource.data.author.is_a? String
         resource.data.author.split(',').map(&:strip)
