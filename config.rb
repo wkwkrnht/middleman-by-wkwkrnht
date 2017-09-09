@@ -33,7 +33,7 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 page 'articles/*', :layout => 'article'
 
 def get_data_from_prism
-    api = Prismic.api('https://middleman-by-wkwkrnht.io/api')
+    api = Prismic.api('https://middleman-by-wkwkrnht.cdn.prismic.io/api')
     doc = api.query(Prismic::Predicates.at("document.type", "blog"))
     doc.results
 end
