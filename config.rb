@@ -37,7 +37,7 @@ def get_data_from_prism
     doc = api.query(Prismic::Predicates.at("document.type", "blog"))
     doc.results
 end
-get_data_frpom_prism().each do |page|
+get_data_from_prism().each do |page|
     url = page.url || URL.encode(page.title)
     proxy "/blog/#{url}.html", '/blog/template.html', :ignore => true, locals: { articles: page }
 end
