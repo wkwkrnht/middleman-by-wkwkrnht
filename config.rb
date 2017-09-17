@@ -32,14 +32,11 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 
 page 'articles/*', :layout => 'article'
 
-def get_data_from_prism
-    api = Prismic.api('https://middleman-by-wkwkrnht.cdn.prismic.io/api')
-    doc = api.query(Prismic::Predicates.at("document.type", "blog"))
-    doc.results
-end
-get_data_from_prism().each do |page|
-    url = page.url || URL.encode(page.title)
-    proxy "/blog/#{url}.html", '/blog/template.html', :ignore => true, locals: { articles: page }
+activate :prismic do |f|
+    f.api_url = 'https://middleman-by-wkwkrnht.prismic.io/api'
+    f.release = 'master'
+    f.link_resolver = ->(link) { binding.pry; "#{link.type.pluralize}/#{link.slug}"}
+    f.custom_queries = { test: [Prismic::Predicates::at('document.type', 'blog')] }
 end
 
 
