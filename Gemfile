@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'rack'
 gem 'json'
+gem 'slim'
 
 gem 'middleman'
 #gem 'middleman-prismic'
