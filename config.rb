@@ -32,8 +32,6 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 
 page 'articles/*', :layout => 'article'
 
-
-
 def get_author(resource)
     if resource.data.author.is_a? String
         resource.data.author.split(',').map(&:strip)
