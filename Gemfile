@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'rack'
 gem 'json'
+gem 'ansi'
 gem 'slim'
 gem 'prismic.io', require: 'prismic'
 
