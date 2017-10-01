@@ -1,3 +1,4 @@
+@import './base.scss';
 @import './parts/site-header.scss';
 @import './parts/card.scss';
 @import './parts/tag-cloud.scss';
@@ -22,23 +23,5 @@
                 }
             }
         }
-    }
-}
-
-.date-search{
-    & h3{
-        font-size:2rem;
-    }
-    & h4{
-        font-size:1.8rem;
-    }
-    & h5{
-        font-size:1.6rem;
-    }
-    & .card-list{
-        height:30vmax;
-        overflow-x:auto;
-        overflow-y:hidden;
-        width:100%;
     }
 }

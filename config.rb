@@ -32,6 +32,22 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 
 page 'articles/*', :layout => 'article'
 
+def get_author(resource)
+    if resource.data.author.is_a? String
+        resource.data.author.split(',').map(&:strip)
+    else
+        resource.data.author
+    end
+end
+
+def group_lookup_by_author(resource,sum)
+    results = Array(get_author(resource)).map(&:to_s).map(&:to_sym)
+    results.each do |k|
+        sum[k] ||= []
+        sum[k] << resource
+    end
+end
+
 def get_tags(resource)
     if resource.data.tags.is_a? String
         resource.data.tags.split(',').map(&:strip)
@@ -40,7 +56,7 @@ def get_tags(resource)
     end
 end
 
-def group_lookup(resource,sum)
+def group_lookup_by_tag(resource,sum)
     results = Array(get_tags(resource)).map(&:to_s).map(&:to_sym)
     results.each do |k|
         sum[k] ||= []
@@ -48,8 +64,10 @@ def group_lookup(resource,sum)
     end
 end
 
-tags = resources.select{ |resource| resource.data.tags }.each_with_object({}, &method(:group_lookup))
+author = resources.select{ |resource| resource.data.author }.each_with_object({}, &method(:group_lookup_by_author))
+tags = resources.select{ |resource| resource.data.tags }.each_with_object({}, &method(:group_lookup_by_tag))
 
+collection :sort_by_author, author
 collection :all_tags, tags
 
 tags.each do |k, resource|

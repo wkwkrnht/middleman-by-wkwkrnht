@@ -16,5 +16,5 @@ collections:
     - {label: "Publish Date", name: "date", widget: "datetime", default: ""}
     - {label: "Tags", name: "tags", widget: "string", default: "未分類", required: false}
     - {label: "Eyecatch", name: "eyecatch", widget: "image", required: false}
-    - {label: "Author", name: "author", widget: "string", default: "wkwkrnht"}
+    - {label: "Author", name: "author", widget: "string", default: "wkwkrnht", required: false}
     - {label: "Content", name: "body", widget: "markdown", default: ""}

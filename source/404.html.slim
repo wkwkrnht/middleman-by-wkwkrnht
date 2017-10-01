@@ -59,7 +59,6 @@ html
             |}
         = javascript_include_tag 'loadCSS'
         javascript:
-            loadCSS('/style/base.css');
             loadCSS('/style/404.css');
     body
         header.site-header
@@ -77,13 +76,13 @@ html
                     input name='sites' type='hidden' value='#{base_url}'
                     input name='q' type='search' required='' label='キーワード'
                     input type='submit' value='Search' label='検索'
-            /section class='big-card tag-search'
-            /    h2
-            /        | タグで検索
-            /    ul.tag-cloud
-            /        - blog.tags.each_key do |tag|
-            /            li
-            /                == link_to tag, tag_path(tag), :title=>tag, :tabindex=>'0'
+            section class='big-card tag-search'
+                h2
+                    | タグで検索
+                ul.tag-cloud
+                    /- collection(:all_tags).each do |tag, articles|
+                    /    li
+                    /        == link_to tag, URL.join(base_url, '/tag/' + URL.encode(tag) + '.html'), :title=>tag, :tabindex=>'0'
             /section class='big-card date-search'
             /    h2
             /        | 日時で検索

@@ -59,7 +59,6 @@ html
             |}
         = javascript_include_tag 'loadCSS'
         javascript:
-            loadCSS('/style/base.css');
             loadCSS('/style/tag.css');
     body
         header.site-header
@@ -76,6 +75,6 @@ html
                     = image_tag article.data.eyecatch || '/img/no-img/512X512.png', :alt=>'eyecatch', :class=>'card-img'
                     div.card-meta
                         h2
-                            = title 
+                            = title
                         time
                             = article.data.date
