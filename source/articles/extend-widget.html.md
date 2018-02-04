@@ -5,4 +5,4 @@ tags: 未分類
 eyecatch: null
 author: wkwkrnht
 ---
-embed http://wkwkrnht.wp.xdomain.jp/
+embed.ly http://wkwkrnht.wp.xdomain.jp/
