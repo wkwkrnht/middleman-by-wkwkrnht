@@ -11,9 +11,6 @@ set :markdown_engine, :kramdown
 set :markdown, :fenced_code_blocks => true, :smartypants => true, :autolink => true
 set :url_root, 'https://middleman-by-wkwkrnht.netlify.com'
 
-activate :wordpress do |wp|
-    wp.uri = 'wkwkrnht.wp.xdomain.jp'
-end
 activate :search_engine_sitemap
 activate :syntax, :line_numbers => true
 activate :sitemap_ping do |config|

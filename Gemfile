@@ -7,7 +7,6 @@ gem 'ansi'
 gem 'slim'
 
 gem 'middleman'
-gem 'middleman-wordpress'
 gem 'middleman-syntax'
 gem 'middleman-robots'
 gem 'middleman-search_engine_sitemap'
