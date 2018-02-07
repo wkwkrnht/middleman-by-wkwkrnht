@@ -12,13 +12,13 @@ class WordPress
 
     protected
 
-    def fetch_posts(type, page, limit)
+    def fetch_posts(type)
         self.class.get("/posts?type=#{type}")
     end
 
     def get_posts
         posts = []
-        tmp_posts = fetch_posts('post', page, limit)
+        tmp_posts = fetch_posts('post'
         posts.concat tmp_posts
         return posts
     end
