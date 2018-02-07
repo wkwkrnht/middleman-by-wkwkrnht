@@ -17,10 +17,8 @@ class WordPress
     end
 
     def get_posts
-        posts = []
-        tmp_posts = fetch_posts('post')
-        posts.concat tmp_posts
-        return posts
+        tmp_json = fetch_posts('post')
+        return JSON.parse(tmp_json)
     end
 
     def get_and_parse_info(id, type)
