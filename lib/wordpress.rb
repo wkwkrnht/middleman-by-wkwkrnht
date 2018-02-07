@@ -12,12 +12,8 @@ class WordPress
 
     protected
 
-    def fetch_posts(type)
-        self.class.get("/posts?type=#{type}")
-    end
-
     def get_posts
-        tmp_json = fetch_posts('post')
+        tmp_json = self.class.get("/posts?type=post")
         return JSON.parse(tmp_json)
     end
 
