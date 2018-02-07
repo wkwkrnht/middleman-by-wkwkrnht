@@ -18,7 +18,7 @@ class WordPress
 
     def get_posts
         posts = []
-        tmp_posts = fetch_posts('post'
+        tmp_posts = fetch_posts('post')
         posts.concat tmp_posts
         return posts
     end
