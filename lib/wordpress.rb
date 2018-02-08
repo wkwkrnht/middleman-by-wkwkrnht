@@ -2,9 +2,7 @@ class WordPress
     require 'httparty'
     require 'json'
 
-    def initialize(uri)
-        api_uri = uri
-    end
+    api_uri = uri
 
     def posts
         @posts ||= get_posts
