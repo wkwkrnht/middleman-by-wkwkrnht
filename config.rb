@@ -3,37 +3,6 @@ require 'httparty'
 require 'json'
 require 'slim'
 
-api_uri = data.site.wp_api_uri
-
-def wp_posts(api_uri)
-    @posts ||= get_posts(api_uri)
-end
-
-def get_posts(api_uri)
-    tmp_json = HTTParty.get(api_uri + '/posts?type=post')
-    return JSON.parse(tmp_json)
-end
-
-def get_and_parse_info(api_uri, id, type)
-    if type == 'media'
-        tmp_json = HTTParty.get(api_uri + "/media?include=#{id}")
-        tmp_json = JSON.parse(tmp_json)
-        return tmp_json['source_url']
-    elsif type == 'author'
-        tmp_json = HTTParty.get(api_uri + "/users?include=#{id}")
-        tmp_json = JSON.parse(tmp_json)
-        return tmp_json['name']
-    elsif type == 'tag'
-        tmp_json = HTTParty.get(api_uri + "/tags?include=#{id}")
-        tmp_json = JSON.parse(tmp_json)
-        return tmp_json['name']
-    end
-end
-
-wp_posts.each do |post|
-    proxy "/posts/#{post['slug']}/", "templates/post", locals: { post: post }
-end
-
 set :layout, :_auto_layout
 set :layouts_dir, 'template'
 set :images_dir, 'img'
@@ -62,6 +31,36 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
             :disallow => %w(404.html)
         }
     ]
+
+def wp_posts
+    api_uri = data.site.wp_api_uri
+    @posts ||= get_posts(api_uri)
+end
+
+def get_posts(api_uri)
+    tmp_json = HTTParty.get(api_uri + '/posts?type=post')
+    return JSON.parse(tmp_json)
+end
+
+def get_and_parse_info(api_uri, id, type)
+    if type == 'media'
+        tmp_json = HTTParty.get(api_uri + "/media?include=#{id}")
+        tmp_json = JSON.parse(tmp_json)
+        return tmp_json['source_url']
+    elsif type == 'author'
+        tmp_json = HTTParty.get(api_uri + "/users?include=#{id}")
+        tmp_json = JSON.parse(tmp_json)
+        return tmp_json['name']
+    elsif type == 'tag'
+        tmp_json = HTTParty.get(api_uri + "/tags?include=#{id}")
+        tmp_json = JSON.parse(tmp_json)
+        return tmp_json['name']
+    end
+end
+
+wp_posts.each do |post|
+    proxy "/posts/#{post['slug']}/", "templates/post", locals: { post: post }
+end
 
 page 'articles/*', :layout => 'article'
 
