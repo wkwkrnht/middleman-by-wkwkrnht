@@ -1,16 +1,14 @@
-- require 'lib/wordpress'
-- wordpress = WordPress.new('http://wkwkrnht.wp.xdomain.jp/wp-json')
 - base_url = data.site.host
 - site_title = data.site.title
 - title = post['title']['rendered'] || site_title
 - content = post['content']['rendered']
 - description = content.slice(0,99) || data.site.description
-- meta_img = wordpress.get_and_parse_info(post['featured_media'],'media') || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
+- meta_img = get_and_parse_info(post['featured_media'],'media') || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
 - meta_url = URI.join(base_url, URI.encode(current_page.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
 - date = post['date']
-- author = wordpress.get_and_parse_info(post['author'],'author')
+- author = get_and_parse_info(post['author'],'author')
 doctype html
 html lang='ja'
     head
@@ -80,7 +78,7 @@ html lang='ja'
     body class='#{page_classes}'
         article
             header.article-header
-                = wordpress.get_and_parse_info(post['featured_media'],'media') || '/img/no-img/full.png', :alt=>'eyecatch', :class=>'article-eyecatch'
+                = get_and_parse_info(post['featured_media'],'media') || '/img/no-img/full.png', :alt=>'eyecatch', :class=>'article-eyecatch'
                 .article-meta
                     h1.article-title
                         == title
@@ -94,11 +92,11 @@ html lang='ja'
                         ul.tag-cloud
                             - if tags.is_a? String
                                 - tags.split(',').map(&:strip).each do |tag|
-                                    - tag_name = wordpress.get_and_parse_info(tag,'tag')
+                                    - tag_name = get_and_parse_info(tag,'tag')
                                     li
                                         == link_to tag_name, URI.join(URI.join(base_url, '/tag/'), URI.encode(tag_name) + '.html')
                             - else
-                                - - tag_name = wordpress.get_and_parse_info(tags,'tag')
+                                - - tag_name = get_and_parse_info(tags,'tag')
                                 li
                                     == link_to tag_name, URI.join(URI.join(base_url, '/tag/'), URI.encode(tag_name) + '.html')
             .article-main role='main'
