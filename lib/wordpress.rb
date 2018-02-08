@@ -1,9 +1,9 @@
 class WordPress
-    include HTTParty
-    include JSON
+    include 'httparty'
+    include 'json'
 
     def initialize(uri)
-        self.class.base_uri uri
+        HTTParty.base_uri uri
     end
 
     def posts
@@ -13,21 +13,21 @@ class WordPress
     protected
 
     def get_posts
-        tmp_json = self.class.get("/posts?type=post")
+        tmp_json = HTTParty.get('/posts?type=post')
         return JSON.parse(tmp_json)
     end
 
     def get_and_parse_info(id, type)
         if type == 'media'
-            tmp_json = self.class.get("/media?include=#{id}")
+            tmp_json = HTTParty.get("/media?include=#{id}")
             tmp_json = JSON.parse(tmp_json)
             return tmp_json['source_url']
         elsif type == 'author'
-            tmp_json = self.class.get("/users?include=#{id}")
+            tmp_json = HTTParty.get("/users?include=#{id}")
             tmp_json = JSON.parse(tmp_json)
             return tmp_json['name']
         elsif type == 'tag'
-            tmp_json = self.class.get("/tags?include=#{id}")
+            tmp_json = HTTParty.get("/tags?include=#{id}")
             tmp_json = JSON.parse(tmp_json)
             return tmp_json['name']
         end

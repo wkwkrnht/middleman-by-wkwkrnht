@@ -6,11 +6,6 @@ wordpress = WordPress.new('http://wkwkrnht.wp.xdomain.jp/wp-json')
 wordpress.posts.each do |post|
     proxy "/posts/#{post['slug']}/", "templates/post", locals: { post: post }
 end
-helpers do
-    def wp
-        wordpress
-    end
-end
 
 set :layout, :_auto_layout
 set :layouts_dir, 'template'
