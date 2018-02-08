@@ -1,6 +1,6 @@
 class WordPress
-    include 'httparty'
-    include 'json'
+    require 'httparty'
+    require 'json'
 
     def initialize(uri)
         HTTParty.base_uri uri
