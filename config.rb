@@ -33,7 +33,7 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
     ]
 
 def wp_posts
-    api_uri = data.site.wp_api_uri
+    api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
     @posts ||= get_posts(api_uri)
 end
 
