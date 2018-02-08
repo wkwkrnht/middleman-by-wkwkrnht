@@ -3,18 +3,18 @@ require 'httparty'
 require 'json'
 require 'slim'
 
-api_uri = data.site.api_uri
+api_uri = data.site.wp_api_uri
 
-def wp_posts
-    @posts ||= get_posts
+def wp_posts(api_uri)
+    @posts ||= get_posts(api_uri)
 end
 
-def get_posts
+def get_posts(api_uri)
     tmp_json = HTTParty.get(api_uri + '/posts?type=post')
     return JSON.parse(tmp_json)
 end
 
-def get_and_parse_info(id, type)
+def get_and_parse_info(api_uri, id, type)
     if type == 'media'
         tmp_json = HTTParty.get(api_uri + "/media?include=#{id}")
         tmp_json = JSON.parse(tmp_json)
