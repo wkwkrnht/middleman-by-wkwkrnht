@@ -32,14 +32,12 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
         }
     ]
 
-def wp_posts
+def wp_get_posts
     api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
-    @posts ||= get_posts(api_uri)[0]
-end
-
-def get_posts(api_uri)
     tmp_json = HTTParty.get(api_uri + '/posts')
-    return JSON.parse(tmp_json.body)
+    tmp_json = JSON.parse(tmp_json.body)
+    tmp_json = tmp_json[0]
+    @posts ||= tmp_json
 end
 
 def get_and_parse_info(api_uri, id, type)
@@ -58,7 +56,7 @@ def get_and_parse_info(api_uri, id, type)
     end
 end
 
-wp_posts.each do |post|
+wp_get_posts.each do |post|
     proxy "/posts/#{post['slug']}/", "templates/post", locals: { post: post }
 end
 
