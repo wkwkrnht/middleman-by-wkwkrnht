@@ -38,7 +38,8 @@ def wp_posts
 end
 
 def get_posts(api_uri)
-    return HTTParty.get(api_uri + '/posts?type=post').body
+    tmp_json = HTTParty.get(api_uri + '/posts')
+    return JSON.parse(tmp_json.body)
 end
 
 def get_and_parse_info(api_uri, id, type)
