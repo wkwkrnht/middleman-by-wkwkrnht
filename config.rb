@@ -64,7 +64,7 @@ wp_get_posts(api_uri).each do |post|
     date = post['date']
     eyecatch = get_and_parse_info(api_uri,post['featured_media'],'media')
     tags = post['tags']
-    proxy "/posts/#{slug}/", "templates/post", locals: { slug: slug, title: title, content: content, author: author, date: date, eyecatch: eyecatch, tags: tags }
+    proxy "/posts/#{slug}/", "templates/post.slim", locals: { slug: slug, title: title, content: content, author: author, date: date, eyecatch: eyecatch, tags: tags }
 end
 
 page 'articles/*', :layout => 'article'
