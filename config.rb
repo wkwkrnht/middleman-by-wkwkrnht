@@ -34,7 +34,7 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 
 def wp_posts
     api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
-    @posts ||= get_posts(api_uri)
+    @posts ||= get_posts(api_uri)[0]
 end
 
 def get_posts(api_uri)
@@ -46,15 +46,15 @@ def get_and_parse_info(api_uri, id, type)
     if type == 'media'
         tmp_json = HTTParty.get(api_uri + "/media?include=#{id}").body
         tmp_json = JSON.parse(tmp_json)
-        return tmp_json['source_url']
+        return tmp_json[0]['source_url']
     elsif type == 'author'
         tmp_json = HTTParty.get(api_uri + "/users?include=#{id}").body
         tmp_json = JSON.parse(tmp_json)
-        return tmp_json['name']
+        return tmp_json[0]['name']
     elsif type == 'tag'
         tmp_json = HTTParty.get(api_uri + "/tags?include=#{id}").body
         tmp_json = JSON.parse(tmp_json)
-        return tmp_json['name']
+        return tmp_json[0]['name']
     end
 end
 
