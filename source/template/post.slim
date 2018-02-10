@@ -1,15 +1,10 @@
 - base_url = data.site.host
-- api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
 - site_title = data.site.title
-- title = post['title']['rendered'] || site_title
-- content = post['content']['rendered']
 - description = content.slice(0,99) || data.site.description
 - meta_img = get_and_parse_info(api_uri,post['featured_media'],'media') || URI.join(base_url, URI.encode('/img/no-img/256x256.png'))
 - meta_url = URI.join(base_url, URI.encode(current_page.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
-- date = post['date']
-- author = get_and_parse_info(api_uri,post['author'],'author')
 doctype html
 html lang='ja'
     head
@@ -79,7 +74,7 @@ html lang='ja'
     body class='#{page_classes}'
         article
             header.article-header
-                = get_and_parse_info(api_uri,post['featured_media'],'media') || '/img/no-img/full.png', :alt=>'eyecatch', :class=>'article-eyecatch'
+                = image_tag eyecatch, :alt=>'eyecatch', :class=>'article-eyecatch'
                 .article-meta
                     h1.article-title
                         == title
@@ -88,8 +83,7 @@ html lang='ja'
                             == date
                         span.article-author
                             == author
-                    - if current_page.data.tags.present?
-                        - tags = post['tags']
+                    - if tags.present?
                         ul.tag-cloud
                             - if tags.is_a? String
                                 - tags.split(',').map(&:strip).each do |tag|
