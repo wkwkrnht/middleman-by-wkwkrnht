@@ -35,8 +35,8 @@ activate :robots, :sitemap => 'https://middleman-by-wkwkrnht.netlify.com/sitemap
 def wp_get_posts
     api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
     tmp_json = HTTParty.get(api_uri + '/wp/v2/posts')
-    #tmp_json = JSON.parse(tmp_json.body)
-    tmp_json = tmp_json[0]
+    tmp_json = JSON.parse(tmp_json.body)
+    #tmp_json = tmp_json[0]
     @posts ||= tmp_json
 end
 
