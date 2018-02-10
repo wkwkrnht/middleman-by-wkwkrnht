@@ -1,6 +1,6 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- description = :locals['content'].slice(0,99) || data.site.description
+- description = locals[:content].slice(0,99) || data.site.description
 - meta_url = URI.join(base_url, URI.encode(current_page.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
