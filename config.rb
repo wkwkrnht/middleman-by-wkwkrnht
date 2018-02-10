@@ -59,7 +59,7 @@ end
 wp_get_posts(api_uri).each do |post|
     slug = post['slug']
     title = post['title']['rendered'] || data.site.title
-    content = post['content']#['rendered']
+    content = post['content']['rendered']
     author = get_and_parse_info(api_uri,post['author'],'author')
     date = post['date']
     eyecatch = get_and_parse_info(api_uri,post['featured_media'],'media')

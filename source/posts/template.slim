@@ -1,6 +1,6 @@
 - base_url = data.site.host
 - site_title = data.site.title
-- description = content.slice(0,99) || data.site.description
+- description = local[:content].slice(0,99) || data.site.description
 - meta_url = URI.join(base_url, URI.encode(current_page.url))
 - theme_color = data.site.theme_color
 - first_post_year = data.site.startyear
@@ -23,11 +23,11 @@ html lang='ja'
         meta property='og:image' content='#{eyecatch}'
         meta name='twitter:card' content="summary"
         meta name='twitter:domain' content='#{base_url}'
-        meta name='twitter:title' content='#{site_title}'
+        meta name='twitter:title' content='#{title}'
         meta name='twitter:description' content='#{description}'
         meta name='twitter:image' content='#{eyecatch}'
         meta name='twitter:site' content=data.site.twitterID
-        link rel='fluid-icon' href='#{eyecatch}' title='#{site_title}'
+        link rel='fluid-icon' href='#{eyecatch}' title='#{title}'
         link rel='image_src' href='#{eyecatch}' url='#{eyecatch}' height="256" width="256"
         title == title
         script type="application/ld+json"
@@ -83,6 +83,7 @@ html lang='ja'
                         span.article-author
                             == author
                     - if tags.present?
+                        - api_uri = 'http://wkwkrnht.wp.xdomain.jp/wp-json'
                         ul.tag-cloud
                             - if tags.is_a? String
                                 - tags.split(',').map(&:strip).each do |tag|
